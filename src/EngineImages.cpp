@@ -1414,7 +1414,7 @@ EngineBase* EngineCbx::CreateFromFile(const char* path) {
 
     Kind kind = GuessFileTypeFromContent(path);
     MultiFormatArchive* archive = nullptr;
-    if (kind == kindFileZip) {
+    if (kind == kindFileZip || kind == kindFileEpub) {
         archive = OpenZipArchive(path, false);
     } else if (kind == kindFileRar) {
         archive = OpenRarArchive(path);
@@ -1482,7 +1482,7 @@ EngineBase* EngineCbx::CreateFromStream(IStream* stream) {
 }
 
 static Kind cbxKinds[] = {
-    kindFileCbz, kindFileCbr, kindFileCb7, kindFileCbt, kindFileZip, kindFileRar, kindFile7Z, kindFileTar,
+    kindFileCbz, kindFileCbr, kindFileCb7, kindFileCbt, kindFileZip, kindFileRar, kindFile7Z, kindFileTar, kindFileEpub
 };
 
 bool IsEngineCbxSupportedFileType(Kind kind) {
